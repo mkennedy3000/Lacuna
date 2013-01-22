@@ -1,10 +1,10 @@
-----------LACUNA----------
+***
+**LACUNA**
+***
 
-Team (come of with a group name maybe? haha)
-	Mark Kennedy [Project Lead]
-	Jack Sombeck
-	
-Description
-	...
-	
---------------------------
+Team
+
+    Mark Kennedy [Project Lead]
+    Jack Sombeck
+    
+***
