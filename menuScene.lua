@@ -1,6 +1,7 @@
 function loadMenu()
-	--Implement later to make cleaner and allow for iterations in updateMenu and drawMenu--
-	--menu = {menuTitle, ...}
+	--[[ Implement later to make cleaner and allow for iterations in updateMenu and drawMenu
+	menu = {menuTitle, ...}
+	--]]
 	
 	--Create Title--
 	menuTitle = {
@@ -105,9 +106,6 @@ function drawMenu()
 	love.graphics.setColor(menuQuitButton.color.r, menuQuitButton.color.g, menuQuitButton.color.b)
 	love.graphics.setNewFont(menuPlayButton.size)
 	love.graphics.printf(menuQuitButton.text, menuQuitButton.x, menuQuitButton.y, 500, menuQuitButton.align)
-	
-	--Doesn't need to be redrawn until button hovers/presses--
-	drawn = true
 	
 end
 
