@@ -1,4 +1,3 @@
--- i'll start working on this later (feel free to yourself!) i gotta read through the docs some more. --
 function loadGame()
 end
 
