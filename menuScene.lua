@@ -1,3 +1,5 @@
+require 'Button'
+
 function loadMenu()
 	--[[ Implement later to make cleaner and allow for iterations in updateMenu and drawMenu
 	menu = {menuTitle, ...}
@@ -14,60 +16,16 @@ function loadMenu()
 	}
 	
 	--Create Play Button--
-	menuPlayButton = {
-		text = "PLAY",
-		size = 32,
-		x = 0,
-		y = 400, 
-		align = "center",
-		color = redOrange,
-		hoverColor = darkBlue,
-		pressedColor = lightBlue,
-		hitBox = { w = 100, h = 40, inRange = false, pressed = false}
-	}
+	menuPlayButton = Button:new{ text = "PLAY", y = 400 }
 	
 	--Create Quit Button--
-	menuQuitButton = {
-		text = "QUIT",
-		size = 32,
-		x = 0,
-		y = 460, 
-		align = "center",
-		color = redOrange,
-		hoverColor = darkBlue,
-		pressedColor = lightBlue,
-		hitBox = { w = 100, h = 40, inRange = false, pressed = false}
-	}
+	menuQuitButton = Button:new{ text = "QUIT", y = 460 , callBack = function() love.event.quit() end}
+	
 end
 
 function updateMenu()
-	--Check if mouse is hovering over button--
-	local x, y = love.mouse.getPosition()
-	isHovering(x,y)
-	
-	--Check for button presses--
-	if love.mouse.isDown("l") then
-		if menuPlayButton.hitBox.inRange then
-			menuPlayButton.hitBox.pressed = true
-			menuQuitButton.hitBox.pressed = false
-		elseif menuQuitButton.hitBox.inRange then
-			menuQuitButton.hitBox.pressed = true
-			menuPlayButton.hitBox.pressed = false
-		else
-			menuQuitButton.hitBox.pressed = false
-			menuPlayButton.hitBox.pressed = false
-		end
-	--Check for button releases--
-	else
-		if menuPlayButton.hitBox.pressed then
-			--Play Button Clicked--
-			menuPlayButton.hitBox.pressed = false
-		elseif menuQuitButton.hitBox.pressed then
-			--Quit Button Clicked--
-			menuQuitButton.hitBox.pressed = false
-			love.event.quit()
-		end
-	end
+	menuPlayButton:update()
+	menuQuitButton:update()
 end
 
 function drawMenu()
@@ -80,20 +38,10 @@ function drawMenu()
 	love.graphics.printf(menuTitle.text, menuTitle.x, menuTitle.y, 500, menuTitle.align)
 	
 	--Draw Play Button--
-	if menuPlayButton.hitBox.inRange == true then
-		if not menuPlayButton.hitBox.pressed then
-			love.graphics.setColor(menuPlayButton.hoverColor.r, menuPlayButton.hoverColor.g, menuPlayButton.hoverColor.b)
-		else
-			love.graphics.setColor(menuPlayButton.pressedColor.r, menuPlayButton.pressedColor.g, menuPlayButton.pressedColor.b)
-		end
-		love.graphics.rectangle("fill", 250-(menuPlayButton.hitBox.w/2), menuPlayButton.y, menuPlayButton.hitBox.w, menuPlayButton.hitBox.h)
-	end
-	
-	love.graphics.setColor(menuPlayButton.color.r, menuPlayButton.color.g, menuPlayButton.color.b)
-	love.graphics.setNewFont(menuPlayButton.size)
-	love.graphics.printf(menuPlayButton.text, menuPlayButton.x, menuPlayButton.y, 500, menuPlayButton.align)
+	menuPlayButton:draw()
 	
 	--Draw Quit Button--
+<<<<<<< HEAD
 	if menuQuitButton.hitBox.inRange == true then
 		if not menuQuitButton.hitBox.pressed then
 			love.graphics.setColor(menuQuitButton.hoverColor.r, menuQuitButton.hoverColor.g, menuQuitButton.hoverColor.b)
@@ -129,6 +77,9 @@ function isHovering(x,y)
 	else
 		menuQuitButton.hitBox.inRange = false
 	end
+=======
+	menuQuitButton:draw()
+>>>>>>> Button class added
 end
 
 function deleteMenu()
