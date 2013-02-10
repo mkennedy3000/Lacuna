@@ -42,7 +42,7 @@ function MenuScene:draw()
 	--Draw Title--
 	love.graphics.setColor(self.title.color.r, self.title.color.g, self.title.color.b)
 	love.graphics.setNewFont(self.title.size)
-	love.graphics.printf(self.title.text, self.title.x, self.title.y, 500, self.title.align)
+	love.graphics.printf(self.title.text, self.title.x, self.title.y, screenSize.w, self.title.align)
 	
 	--Draw Buttons--
 	self.playButton:draw()

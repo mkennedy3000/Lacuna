@@ -6,7 +6,7 @@ function love.conf(t)
 	t.version = "0.8.0"
 	t.console = false
 	t.release = false
-	t.screen.width = 500			--We can change this later
+	t.screen.width = 800		
 	t.screen.height = 800
 	t.screen.fullscreen = false
 	t.screen.vsync = true
@@ -20,5 +20,5 @@ function love.conf(t)
 	t.modules.timer = true
 	t.modules.mouse = true
 	t.modules.sound = true
-	t.modules.physics = false		--We might want to enable this later
+	t.modules.physics = false
 end

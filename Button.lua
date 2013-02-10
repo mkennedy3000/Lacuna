@@ -43,8 +43,8 @@ function Button:update()
 	--Check if mouse is hovering over button--
 	local x, y = love.mouse.getPosition()
 
-	if x >= 250-(self.hitBox.w/2) and --250 is the screen width, should load into constants...
-	   x <= 250+(self.hitBox.w/2) and
+	if x >= (screenSize.w/2) - (self.hitBox.w/2) and --250 is the screen width, should load into constants...
+	   x <= (screenSize.w/2) + (self.hitBox.w/2) and
 	   y >= self.y and
 	   y <= self.y+self.hitBox.h then
 		self.hoverOver = true
@@ -77,10 +77,10 @@ function Button:draw()
 		else
 			love.graphics.setColor(self.pressedColor.r, self.pressedColor.g, self.pressedColor.b)
 		end
-		love.graphics.rectangle("fill", 250-(self.hitBox.w/2), self.y, self.hitBox.w, self.hitBox.h)
+		love.graphics.rectangle("fill", (screenSize.w/2)-(self.hitBox.w/2), self.y, self.hitBox.w, self.hitBox.h)
 	end
 	
 	love.graphics.setColor(self.color.r, self.color.g, self.color.b)
 	love.graphics.setNewFont(self.size)
-	love.graphics.printf(self.text, self.x, self.y, 500, self.align)
+	love.graphics.printf(self.text, self.x, self.y, screenSize.w, self.align)
 end
