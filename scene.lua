@@ -1,34 +1,32 @@
-require 'menuScene'
-require 'gameScene'
+-------------------
+--[ Scene Class ]--
+-------------------
 
-function loadScene(scene)
-	if scene == "menu" then
-		loadMenu()
-	end
+Scene = {}
+
+---------------------
+--[ Scene Methods ]--
+---------------------
+
+function Scene:new ()
+	o = o or {}		--create table if user does not provide one
+	setmetatable(o, self)
+	self.__index = self
+	return o
 end
 
-function updateScene(scene)
-	if scene == "menu" then
-		updateMenu()
-	end
+function Scene:loadScene()
+	--Abstract--
 end
 
-function drawScene(scene)
-	if scene == "menu" then
-		drawMenu()
-	end
+function Scene:update()
+	--Abstract--
 end
 
-function changeToScene(scene)
-	if scene == "menu" then
-		loadMenu()
-		delete(currentScene)
-		currentScene = "menu"
-	end
+function Scene:draw()
+	--Abstract--
 end
 
-function delete(scene)
-	if scene == "menu" then
-		deleteMenu()
-	end
+function Scene:changeToScene(scene)
+	--Create Later--
 end

@@ -1,4 +1,4 @@
-require 'scene'
+require 'MenuScene'
 
 function love.load()
 	--[[Game Constants]]--
@@ -10,17 +10,17 @@ function love.load()
 		yellow = { r = 233, g = 175, b = 50}
 	
 	--Load First Scene--
-	currentScene = "menu"
-	loadScene(currentScene)
+	currentScene = MenuScene:new()
+	currentScene:loadScene()
 	
 end
 
 function love.update()
-	updateScene(currentScene)
+	currentScene:update()
 end
 
 function love.draw()
-	drawScene(currentScene)
+	currentScene:draw()
 end
 
 function love.mousepressed(x, y, button)
