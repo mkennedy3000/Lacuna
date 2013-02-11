@@ -4,8 +4,8 @@
 
 Cube = {
 	image = love.graphics.newImage("Resources/darkBlueCube.png"),  --Just the default color for now
-	pos = { x = 4, y = 0 },
-	gridPos = { x = 0, y = 0},
+	pos = {},
+	gridPos = { x = 10, y = 10},
 }
 
 --------------------
@@ -14,6 +14,7 @@ Cube = {
 
 function Cube:new(--[[color will go here]])
 	o = {}
+	o.pos = { x = 4, y = 0 }
 	setmetatable(o, self)
 	self.__index = self
 	return o

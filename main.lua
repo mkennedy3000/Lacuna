@@ -4,7 +4,7 @@ require 'MenuScene'
 function love.load()
 	--[[Game Constants]]--
 		--Scene Size--
-		screenSize = { w = 600, h = 800}
+		screenSize = { w = 620, h = 820}
 		--Load Colors--
 		darkBlue = { r = 10, g = 34, b = 78}
 		lightBlue = { r = 160, g = 216, b = 241}
