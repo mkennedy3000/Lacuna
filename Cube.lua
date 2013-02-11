@@ -3,6 +3,7 @@
 ------------------
 
 Cube = {
+	color = 0
 	image = love.graphics.newImage("Resources/darkBlueCube.png"),  --Just the default color for now
 	pos = {},
 	gridPos = { x = 10, y = 10},
@@ -12,9 +13,24 @@ Cube = {
 --[ Cube Methods ]--
 --------------------
 
-function Cube:new(--[[color will go here]])
+function Cube:new(color)
 	o = {}
 	o.pos = { x = 4, y = 0 }
+	o.color = color
+	o.image = "Resources/"
+	if color == 1 then
+		o.image = o.image .. "lightBlueCube.png"
+	elseif color == 2 then
+		o.image = o.image .. "orangeCube.png"
+	elseif color == 3 then
+		o.image = o.image .. "redOrangeCube.png"
+	elseif color == 4 then
+		o.image = o.image .. "yellowCube.png"
+	else
+		o.image = o.image .. "darkBlueCube.png"
+	end
+	o.image = love.graphics.newImage(o.image)
+	
 	setmetatable(o, self)
 	self.__index = self
 	return o

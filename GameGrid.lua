@@ -38,9 +38,10 @@ function GameGrid:loadGameGrid()
 		end
 	end
 	
-	--Test Cube--
-	self.cubes[1] = Cube:new()
-	self.grid[self.cubes[1].pos.x+1][self.cubes[1].pos.y+1] = 1
+	math.randomseed( os.time() )
+	
+	--Spawn New Block--
+	self:spawnBlock()
 end
 
 function GameGrid:update(dt)
@@ -53,7 +54,7 @@ function GameGrid:update(dt)
 			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
 		else
 			--Spawn New Block--
-			self.cubes[#self.cubes + 1] = Cube:new()
+			self:spawnBlock()
 		end
 	end
 end
@@ -92,5 +93,15 @@ function GameGrid:keypressed(key, unicode)
 	end
 	
 	self.cubes[#self.cubes]:move(dir)
+	self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
+end
+
+function GameGrid:spawnBlock()
+	--Pick Random Color--
+	local color = math.random(0, 4)
+	
+	--Make Cubes for now--
+	local b = Cube:new(color)
+	table.insert(self.cubes, b)
 	self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
 end
