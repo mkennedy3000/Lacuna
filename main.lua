@@ -15,7 +15,6 @@ function love.load()
 	
 	--Load First Scene--
 	Director:loadFirstScene( MenuScene:new() )
-	cube = love.graphics.newImage( "Resources/darkBlueCube.png" )
 end
 
 function love.update(dt)
