@@ -3,7 +3,7 @@
 ------------------
 
 Cube = {
-	color = 0
+	color = 0,
 	image = love.graphics.newImage("Resources/darkBlueCube.png"),  --Just the default color for now
 	pos = {},
 	gridPos = { x = 10, y = 10},
