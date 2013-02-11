@@ -27,11 +27,11 @@ function Cube:draw()
 end
 
 function Cube:move(dir)
-	if dir == "left" or dir == "a" then
+	if dir == "left" then
 		self.pos.x = self.pos.x - 1
-	elseif dir == "right" or dir == "d" then
+	elseif dir == "right" then
 		self.pos.x = self.pos.x + 1
-	elseif dir == "down" or dir == "s" then
+	elseif dir == "down" then
 		self.pos.y = self.pos.y + 1
 	end
 end

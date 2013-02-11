@@ -48,5 +48,21 @@ end
 
 function GameGrid:keypressed(key, unicode)
 	--Move Test Cube--
-	self.cubes[1]:move(key)
+	local dir = "none"
+	
+	if key == "left" or key == "a" then
+		if self.cubes[1].pos.x > 0 then
+			dir = "left"
+		end
+	elseif key == "right" or key == "d" then
+		if self.cubes[1].pos.x < ((self.size.w/40)-1) then
+			dir = "right"
+		end
+	elseif key == "down" or key == "s" then
+		if self.cubes[1].pos.y < ((self.size.h/40)-1) then
+			dir = "down"
+		end
+	end
+	
+	self.cubes[1]:move(dir)
 end
