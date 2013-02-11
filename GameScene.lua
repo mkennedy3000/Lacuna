@@ -17,7 +17,7 @@ function GameScene:loadScene()
 end
 
 function GameScene:update(dt)
-
+	self.grid:update(dt)
 end
 
 function GameScene:draw()

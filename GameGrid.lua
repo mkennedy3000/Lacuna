@@ -12,7 +12,7 @@ GameGrid = {
 	block = {},
 	numBlocksCleared = 0,
 	
-	updateRate = 1.0,
+	updateRate = 0.5,
 	timePassed = 0.0,
 }
 
@@ -34,7 +34,13 @@ function GameGrid:loadGameGrid()
 end
 
 function GameGrid:update(dt)
-	
+	self.timePassed = self.timePassed + dt
+	if self.timePassed >= self.updateRate then
+		self.timePassed = self.timePassed - self.updateRate
+		if self.cubes[1].pos.y < ((self.size.h/40)-1) then
+			self.cubes[1]:move("down")
+		end
+	end
 end
 
 function GameGrid:draw()
