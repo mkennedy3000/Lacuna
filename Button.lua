@@ -40,13 +40,24 @@ function Button:update(dt)
 	--Check if mouse is hovering over button--
 	local x, y = love.mouse.getPosition()
 
-	if x >= (screenSize.w/2) - (self.hitBox.w/2) and --250 is the screen width, should load into constants...
-	   x <= (screenSize.w/2) + (self.hitBox.w/2) and
-	   y >= self.y and
-	   y <= self.y+self.hitBox.h then
-		self.hoverOver = true
-	else
-		self.hoverOver = false
+	if self.align == "center" then
+		if x >= (screenSize.w/2) - (self.hitBox.w/2) and
+		   x <= (screenSize.w/2) + (self.hitBox.w/2) and
+		   y >= self.y and
+		   y <= self.y+self.hitBox.h then
+			self.hoverOver = true
+		else
+			self.hoverOver = false
+		end
+	elseif self.align == "right" then
+		if x >= (screenSize.w) - (self.hitBox.w) + self.x and
+		   x <= (screenSize.w) + self.x and
+		   y >= self.y and
+		   y <= self.y+self.hitBox.h then
+			self.hoverOver = true
+		else
+			self.hoverOver = false
+		end
 	end
 	
 	--Check for button presses--
@@ -74,7 +85,11 @@ function Button:draw()
 		else
 			love.graphics.setColor(self.pressedColor.r, self.pressedColor.g, self.pressedColor.b)
 		end
-		love.graphics.rectangle("fill", (screenSize.w/2)-(self.hitBox.w/2), self.y, self.hitBox.w, self.hitBox.h)
+		if self.align == "center" then
+			love.graphics.rectangle("fill", (screenSize.w/2)-(self.hitBox.w/2), self.y, self.hitBox.w, self.hitBox.h)
+		elseif self.align == "right" then
+			love.graphics.rectangle("fill", ((screenSize.w)-(self.hitBox.w)+self.x), self.y, self.hitBox.w, self.hitBox.h)
+		end
 	end
 	
 	love.graphics.setColor(self.color.r, self.color.g, self.color.b)
