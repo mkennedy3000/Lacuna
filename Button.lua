@@ -23,10 +23,7 @@ Button = {
 ----------------------
 --[ Button Methods ]--
 ----------------------
---[[
- 	new
- 	Button Constructor
- --]]
+
 function Button:new (o)
 	o = o or {}		--create table if user does not provide one
 	
@@ -39,7 +36,7 @@ function Button:new (o)
 	return o
 end
 
-function Button:update()
+function Button:update(dt)
 	--Check if mouse is hovering over button--
 	local x, y = love.mouse.getPosition()
 

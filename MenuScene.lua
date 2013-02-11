@@ -3,6 +3,7 @@
 -----------------------
 
 require 'Scene'
+require 'GameScene'
 require 'Button'
 
 MenuScene = Scene:new()
@@ -23,7 +24,10 @@ function MenuScene:loadScene()
 	}
 	
 	--Create Play Button--
-	self.playButton = Button:new{ text = "PLAY", y = 400 }
+	local playPushed = function()
+		Director:changeToScene( GameScene:new() )
+	end
+	self.playButton = Button:new{ text = "PLAY", y = 400 , callBack = playPushed}
 	
 	--Create Quit Button--
 	self.quitButton = Button:new{ text = "QUIT", y = 460 , callBack = function() love.event.quit() end}

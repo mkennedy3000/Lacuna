@@ -4,7 +4,7 @@ require 'MenuScene'
 function love.load()
 	--[[Game Constants]]--
 		--Scene Size--
-		screenSize = { w = 800, h = 800}
+		screenSize = { w = 600, h = 800}
 		--Load Colors--
 		darkBlue = { r = 10, g = 34, b = 78}
 		lightBlue = { r = 160, g = 216, b = 241}
@@ -15,11 +15,11 @@ function love.load()
 	
 	--Load First Scene--
 	Director:loadFirstScene( MenuScene:new() )
-	
+	cube = love.graphics.newImage( "Resources/darkBlueCube.png" )
 end
 
-function love.update()
-	Director:update()
+function love.update(dt)
+	Director:update(dt)
 end
 
 function love.draw()
@@ -27,19 +27,25 @@ function love.draw()
 end
 
 function love.mousepressed(x, y, button)
+	Director:mousepressed(x, y, button)
 end
 
 function love.mousereleased(x, y, button)
+	Director:mousereleased(x, y, button)
 end
 
 function love.keypressed(key, unicode)
+	Director:keypressed(key, unicode)
 end
 
 function love.keyreleased(key, unicode)
+	Director:keyreleased(key, unicode)
 end
 
 function love.focus(f)
+	Director:focus(f)
 end
 
 function love.quit()
+	Director:quit()
 end
