@@ -17,7 +17,7 @@ function GameScene:loadScene()
 	self.grid:loadGameGrid()
 	
 	--Create Quit Button--
-	self.quitButton = Button:new{ text = "QUIT", x = -20, y = 750 , align = "right",
+	self.quitButton = Button:new{ text = "QUIT", x = 200, y = 750 , align = "center",
 								 callBack = function() love.event.quit() end}
 end
 

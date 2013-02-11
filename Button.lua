@@ -41,8 +41,8 @@ function Button:update(dt)
 	local x, y = love.mouse.getPosition()
 
 	if self.align == "center" then
-		if x >= (screenSize.w/2) - (self.hitBox.w/2) and
-		   x <= (screenSize.w/2) + (self.hitBox.w/2) and
+		if x >= (screenSize.w/2) - (self.hitBox.w/2) + self.x and
+		   x <= (screenSize.w/2) + (self.hitBox.w/2) + self.x and
 		   y >= self.y and
 		   y <= self.y+self.hitBox.h then
 			self.hoverOver = true
@@ -86,7 +86,7 @@ function Button:draw()
 			love.graphics.setColor(self.pressedColor.r, self.pressedColor.g, self.pressedColor.b)
 		end
 		if self.align == "center" then
-			love.graphics.rectangle("fill", (screenSize.w/2)-(self.hitBox.w/2), self.y, self.hitBox.w, self.hitBox.h)
+			love.graphics.rectangle("fill", (screenSize.w/2)-(self.hitBox.w/2)+self.x, self.y, self.hitBox.w, self.hitBox.h)
 		elseif self.align == "right" then
 			love.graphics.rectangle("fill", ((screenSize.w)-(self.hitBox.w)+self.x), self.y, self.hitBox.w, self.hitBox.h)
 		end
