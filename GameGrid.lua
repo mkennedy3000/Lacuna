@@ -38,6 +38,7 @@ function GameGrid:loadGameGrid()
 		end
 	end
 	
+	love.keyboard.setKeyRepeat(0.25,0.05)
 	math.randomseed( os.time() )
 	
 	--Spawn New Block--
@@ -45,15 +46,24 @@ function GameGrid:loadGameGrid()
 end
 
 function GameGrid:update(dt)
+	local dir = "none"
+	local x = self.cubes[#self.cubes].pos.x
+	local y = self.cubes[#self.cubes].pos.y
 	self.timePassed = self.timePassed + dt
+	
 	if self.timePassed >= self.updateRate then
 		self.timePassed = self.timePassed - self.updateRate
-		if self.cubes[#self.cubes].pos.y < ((self.size.h/40)-1) then
-			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 0
-			self.cubes[#self.cubes]:move("down")
+		if y < ((self.size.h/40)-1) then
+			self.grid[x+1][y+1] = 0
+			dir = self:checkIfBlock(x, y, "down")
+		end
+		
+		if dir == "down" then
+			self.cubes[#self.cubes]:move(dir)
 			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
 		else
 			--Spawn New Block--
+			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
 			self:spawnBlock()
 		end
 	end
@@ -74,21 +84,23 @@ end
 function GameGrid:keypressed(key, unicode)
 	--Move Test Cube--
 	local dir = "none"
+	local x = self.cubes[#self.cubes].pos.x
+	local y = self.cubes[#self.cubes].pos.y
 	
 	if key == "left" or key == "a" then
-		if self.cubes[#self.cubes].pos.x > 0 then
-			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 0
-			dir = "left"
+		if x > 0 then
+			self.grid[x+1][y+1] = 0
+			dir = self:checkIfBlock(x, y, "left")
 		end
 	elseif key == "right" or key == "d" then
-		if self.cubes[#self.cubes].pos.x < ((self.size.w/40)-1) then
-			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 0
-			dir = "right"
+		if x < ((self.size.w/40)-1) then
+			self.grid[x+1][y+1] = 0
+			dir = self:checkIfBlock(x, y, "right")
 		end
 	elseif key == "down" or key == "s" then
-		if self.cubes[#self.cubes].pos.y < ((self.size.h/40)-1) then
-			self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 0
-			dir = "down"
+		if y < ((self.size.h/40)-1) then
+			self.grid[x+1][y+1] = 0
+			dir = self:checkIfBlock(x, y, "down")
 		end
 	end
 	
@@ -104,4 +116,25 @@ function GameGrid:spawnBlock()
 	local b = Cube:new(color)
 	table.insert(self.cubes, b)
 	self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
+end
+
+--Returns direction to move--
+function GameGrid:checkIfBlock(x, y, dir)
+	local v = dir
+	
+	if dir == "left" then
+		if self.grid[x][y+1] == 1 then
+			v = "none"
+		end
+	elseif dir == "right" then
+		if self.grid[x+2][y+1] == 1 then
+			v = "none"
+		end
+	elseif dir == "down" then
+		if self.grid[x+1][y+2] == 1 then
+			v = "none"
+		end
+	end
+	
+	return v
 end
