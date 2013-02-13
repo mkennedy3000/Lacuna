@@ -16,7 +16,7 @@ function MenuScene:loadScene()
 	--Create Title--
 	self.title = {
 		text = "LACUNA",
-		size = 64,
+		font = love.graphics.newFont(64),
 		x = 0,
 		y = 100, 
 		align = "center",
@@ -45,7 +45,7 @@ function MenuScene:draw()
 	
 	--Draw Title--
 	love.graphics.setColor(self.title.color.r, self.title.color.g, self.title.color.b)
-	love.graphics.setNewFont(self.title.size)
+	love.graphics.setFont(self.title.font)
 	love.graphics.printf(self.title.text, self.title.x, self.title.y, screenSize.w, self.title.align)
 	
 	--Draw Buttons--

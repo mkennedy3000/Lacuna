@@ -4,7 +4,7 @@
 
 Button = {
 	text = "Button",
-	size = 32,
+	font = love.graphics.newFont(32),
 	x = 0,
 	y = 400, 
 	align = "center",
@@ -93,6 +93,6 @@ function Button:draw()
 	end
 	
 	love.graphics.setColor(self.color.r, self.color.g, self.color.b)
-	love.graphics.setNewFont(self.size)
+	love.graphics.setFont(self.font)
 	love.graphics.printf(self.text, self.x, self.y, screenSize.w, self.align)
 end

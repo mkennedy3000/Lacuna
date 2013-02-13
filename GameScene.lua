@@ -16,6 +16,16 @@ function GameScene:loadScene()
 	self.grid = GameGrid:new()
 	self.grid:loadGameGrid()
 	
+	--Create Game Over Text--
+	self.gameOverTitle = {
+		text = "Game Over",
+		font = love.graphics.newFont(60),
+		x = 0,
+		y = 350, 
+		align = "center",
+		color = { r = 230, g = 230, b = 230 }
+	}
+	
 	--Create Quit Button--
 	self.quitButton = Button:new{ text = "QUIT", x = 200, y = 750 , align = "center",
 								 callBack = function() love.event.quit() end}
@@ -33,16 +43,8 @@ function GameScene:draw()
 	self.grid:draw()
 	
 	if self.grid.gameOver == 1 then
-		self.gameOverTitle = {
-		text = "Game Over",
-		size = 60,
-		x = 0,
-		y = 350, 
-		align = "center",
-		color = { r = 230, g = 230, b = 230 }
-		}
 		love.graphics.setColor(self.gameOverTitle.color.r, self.gameOverTitle.color.g, self.gameOverTitle.color.b)
-		love.graphics.setNewFont(self.gameOverTitle.size)
+		love.graphics.setFont(self.gameOverTitle.font)
 		love.graphics.printf(self.gameOverTitle.text, self.gameOverTitle.x, self.gameOverTitle.y, 420, self.gameOverTitle.align)
 	end
 	
