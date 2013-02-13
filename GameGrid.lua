@@ -13,6 +13,8 @@ GameGrid = {
 	block = {},
 	numBlocksCleared = 0,
 	
+	gameOver = 0,
+	
 	updateRate = 0.5,
 	timePassed = 0.0,
 }
@@ -71,7 +73,12 @@ end
 
 function GameGrid:draw()
 	--Draw Game Grid (just a white rect for now)--
-	love.graphics.setColor(230, 230, 230)
+	if self.gameOver == 1 then
+		love.graphics.setColor(100, 100, 100)
+	else
+		love.graphics.setColor(230, 230, 230)
+	end
+	
 	love.graphics.rectangle("fill", self.pos.x, self.pos.y, self.size.w, self.size.h)
 	
 	--Draw Cubes--
@@ -109,13 +116,24 @@ function GameGrid:keypressed(key, unicode)
 end
 
 function GameGrid:spawnBlock()
-	--Pick Random Color--
-	local color = math.random(0, 4)
+	--Check if GameOver--
+	local x
+	for x = 1, 10 do
+		if self.grid[x][1] == 1 then
+			--GameOver--
+			self.gameOver = 1
+		end
+	end
 	
-	--Make Cubes for now--
-	local b = Cube:new(color)
-	table.insert(self.cubes, b)
-	self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
+	if self.gameOver == 0 then
+		--Pick Random Color--
+		local color = math.random(0, 4)
+	
+		--Make Cubes for now--
+		local b = Cube:new(color)
+		table.insert(self.cubes, b)
+		self.grid[self.cubes[#self.cubes].pos.x+1][self.cubes[#self.cubes].pos.y+1] = 1
+	end
 end
 
 --Returns direction to move--

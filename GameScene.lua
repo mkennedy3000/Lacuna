@@ -22,15 +22,35 @@ function GameScene:loadScene()
 end
 
 function GameScene:update(dt)
-	self.grid:update(dt)
+	if self.grid.gameOver == 0 then
+		self.grid:update(dt)
+	end
+	
 	self.quitButton:update()
 end
 
 function GameScene:draw()
 	self.grid:draw()
+	
+	if self.grid.gameOver == 1 then
+		self.gameOverTitle = {
+		text = "Game Over",
+		size = 60,
+		x = 0,
+		y = 350, 
+		align = "center",
+		color = { r = 230, g = 230, b = 230 }
+		}
+		love.graphics.setColor(self.gameOverTitle.color.r, self.gameOverTitle.color.g, self.gameOverTitle.color.b)
+		love.graphics.setNewFont(self.gameOverTitle.size)
+		love.graphics.printf(self.gameOverTitle.text, self.gameOverTitle.x, self.gameOverTitle.y, 420, self.gameOverTitle.align)
+	end
+	
 	self.quitButton:draw()
 end
 
 function GameScene:keypressed(key, unicode)
-	self.grid:keypressed(key, unicode)
+	if self.grid.gameOver == 0 then
+		self.grid:keypressed(key, unicode)
+	end
 end
