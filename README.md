@@ -4,7 +4,6 @@
 
 Team
 
-    Mark Kennedy [Project Lead]
-    Jack Sombeck
+    Mark Kennedy
     
 ***
